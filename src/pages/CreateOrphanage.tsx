@@ -7,7 +7,7 @@ import { FiPlus } from "react-icons/fi";
 import "../styles/pages/create-orphanage.css";
 import Sidebar from "../components/Sidebar";
 import mapIcon from "../utils/mapIcon";
-import api from "../services/apis";
+import apis from "../services/apis";
 import { useHistory } from "react-router-dom";
 
 export default function CreateOrphanage() {
@@ -62,7 +62,7 @@ export default function CreateOrphanage() {
       data.append("images", image);
     });
 
-    await api.post("orphanages", data);
+    await apis.post("orphanages", data);
     alert("Cadastrado com sucesso!");
     history.push("/app");
   }

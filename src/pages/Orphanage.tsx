@@ -3,10 +3,11 @@ import { FaWhatsapp } from "react-icons/fa";
 import { FiClock, FiInfo } from "react-icons/fi";
 import { Map, Marker, TileLayer } from "react-leaflet";
 import "../styles/pages/orphanage.css";
+
 import { useParams } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import mapIcon from "../utils/mapIcon";
-import api from "../services/apis";
+import apis from "../services/apis";
 
 interface Orphanage {
   name: string;
@@ -30,11 +31,13 @@ export default function Orphanage() {
   const [orphanage, setOrphanage] = useState<Orphanage>();
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
+  //prettier-ignore
   useEffect(() => {
-    api.get(`orphanages/${params.id}`).then((res) => {
-      setOrphanage(res.data);
+    apis.get(`orphanages/${params.id}`).then(response => {
+      setOrphanage(response.data);
     });
   }, [params.id]);
+  console.log(activeImageIndex);
   if (!orphanage) {
     return <p> Carregando...</p>;
   }
